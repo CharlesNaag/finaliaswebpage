@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css?family=Mukta');
+
+body {
+    font-family: 'Mukta', sans-serif;
+    height: 100vh;
+    min-height: 550px;
+    background-image: url(../assets/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow-y: hidden;
+}
+
+.navbar {
+    display: flex;
+    background-color: rgb(224, 68, 68);
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: #444444;
+}
+
+.form-group {
+    position: relative;
+}
+
+.fa-eye-slash, .fa-eye {
+    position: absolute;
+    right: 15px;
+    top: 70%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.form-control {
+    height: 55px;
+}
+
+.btn-primary {
+    background-color: rgb(224, 68, 68) !important;
+    border-color: rgb(224, 68, 68) !important;
+    color: white !important;
+}
+
+.btn-primary:hover {
+    background-color: rgb(224, 68, 68) !important;
+    border-color: rgb(224, 68, 68) !important;
+    color: black !important;
+}
+
+.btn-primary:focus, .btn-primary:active, .btn-primary:focus-visible {
+    background-color: rgb(224, 68, 68) !important;
+    border-color: rgb(224, 68, 68) !important;
+    color: white !important;
+    box-shadow: 0 0 0 0.2rem rgb(224, 68, 68) !important;
+}
+
+.jumbotron {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 900px;
+}
+
+.card {
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    background-color: rgb(224, 68, 68);
+    color: white;
+    border-radius: 15px 15px 0 0;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.form-control {
+    height: 45px;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: rgb(224, 68, 68) !important;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.btn-primary:hover {
+    background-color: rgb(200, 60, 60) !important;
+}
+
+.container {
+    max-width: 500px;
+    margin-top: 50px;
+}
+
+.navbar-brand img {
+    vertical-align: middle;
+    margin-right: 10px;
+}

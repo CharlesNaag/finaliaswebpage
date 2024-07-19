@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulletin</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <img src="assets/logo.png" alt="Bulletin Logo" width="50" height="50" class="d-inline-block align-top">
+            Bulletin
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-3">
+        <div class="row" id="bulletin-container">
+            <!-- Bulletin cards will be inserted here dynamically -->
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"> Add Bulletin</i></div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Bulletin</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="bulletin-form">
+                        <div class="form-group">
+                            <label for="bulletin-title">Title</label>
+                            <input type="text" class="form-control" id="bulletin-title" placeholder="Enter title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bulletin-author">Author</label>
+                            <input type="text" class="form-control" id="bulletin-author" placeholder="Enter author" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bulletin-content">Content</label>
+                            <textarea class="form-control" id="bulletin-content" rows="3" placeholder="Enter content" required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A8', '#33FFF5', '#A833FF'];
+
+            function fetchBulletins() {
+                $.get('/api/bulletins', function(data) {
+                    $('#bulletin-container').empty();
+                    data.forEach((bulletin, index) => {
+                        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                        const bulletinCard = `
+                            <div class="col custom-col mb-4">
+                                <div class="card">
+                                    <div class="card-header" style="background-color: ${randomColor};">
+                                        ${bulletin.title} by ${bulletin.author}
+                                    </div>
+                                    <div class="card-body">
+                                        <p>${bulletin.content}</p>
+                                    </div>
+                                </div>
+                            </div>`;
+                        $('#bulletin-container').append(bulletinCard);
+                    });
+                });
+            }
+
+            $('#bulletin-form').on('submit', function(event) {
+                event.preventDefault();
+                const newBulletin = {
+                    title: $('#bulletin-title').val(),
+                    author: $('#bulletin-author').val(),
+                    content: $('#bulletin-content').val(),
+                };
+                $.post('/api/bulletins', newBulletin, function(data) {
+                    $('#exampleModal').modal('hide');
+                    fetchBulletins();
+                });
+            });
+
+            fetchBulletins();
+        });
+    </script>
+</body>
+</html>

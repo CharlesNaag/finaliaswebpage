@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulletin</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/login_signup.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <img src="assets/logo.png" alt="Bulletin Logo" width="50" height="50" class="d-inline-block align-top">
+            Bulletin
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+        
+    <div class="container mt-4">
+        <div id="login-card" class="card">
+            <div class="card-header">Login</div>
+            <div class="card-body">
+                <form action="/api/login" method="post" id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" class="form-control" name="email" id="login-email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" class="form-control" name="password" id="loginPassword" placeholder="Password">
+                        <span class="fa fa-eye-slash" id="toggleLoginPassword"></span>
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="#" id="show-forgot">Forgot Password</a>
+                    </div>
+
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="#" id="show-signup">Don't have an account? Sign Up</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="signup-card" class="card" style="display: none;">
+            <div class="card-header">Sign Up</div>
+            <div class="card-body">
+                <form action="/api/register" method="post" id="signup-form">
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" class="form-control" name="email" id="signup-email" placeholder="Enter Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" name="password" class="form-control" id="signup-password" placeholder="Password">
+                        <span class="fa fa-eye-slash" id="toggleSignupPassword"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm-password">Confirm Password</label>
+                        <input type="password" class="form-control" name="confirmpassword" id="signup-confirm-password" placeholder="Confirm Password">
+                        <span class="fa fa-eye-slash" id="toggleSignupConfirmPassword"></span>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="#" id="show-login">Already have an account? Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="forgot-card" class="card" style="display: none;">
+            <div class="card-header">Forgot Password</div>
+            <div class="card-body">
+                <form action="/api/forgot_password" method="post" id="forgot-form">
+                    <div class="form-group">
+                        <label for="forgot-email">Email</label>
+                        <input type="email" class="form-control" name="email" id="forgot-email" placeholder="Enter Email">
+                    </div>
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-primary">Send Reset Link</button>
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="#" id="show-login-forgot">Back to Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const showLogin = document.getElementById('show-login');
+            const showSignup = document.getElementById('show-signup');
+            const showForgot = document.getElementById('show-forgot');
+            const showLoginForgot = document.getElementById('show-login-forgot');
+            const loginCard = document.getElementById('login-card');
+            const signupCard = document.getElementById('signup-card');
+            const forgotCard = document.getElementById('forgot-card');
+
+            showLogin.addEventListener('click', function() {
+                signupCard.style.display = 'none';
+                forgotCard.style.display = 'none';
+                loginCard.style.display = 'block';
+            });
+
+            showSignup.addEventListener('click', function() {
+                loginCard.style.display = 'none';
+                forgotCard.style.display = 'none';
+                signupCard.style.display = 'block';
+            });
+
+            showForgot.addEventListener('click', function() {
+                loginCard.style.display = 'none';
+                signupCard.style.display = 'none';
+                forgotCard.style.display = 'block';
+            });
+
+            showLoginForgot.addEventListener('click', function() {
+                forgotCard.style.display = 'none';
+                signupCard.style.display = 'none';
+                loginCard.style.display = 'block';
+            });
+
+            function togglePasswordVisibility(targetId, toggleIcon) {
+                const password = document.getElementById(targetId);
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                toggleIcon.classList.toggle('fa-eye');
+                toggleIcon.classList.toggle('fa-eye-slash');
+            }
+
+            // Event listeners for toggle icons
+            document.getElementById('toggleSignupPassword').addEventListener('click', function (e) {
+                togglePasswordVisibility('signup-password', this);
+            });
+
+            document.getElementById('toggleSignupConfirmPassword').addEventListener('click', function (e) {
+                togglePasswordVisibility('signup-confirm-password', this);
+            });
+
+            document.getElementById('toggleForgotPassword').addEventListener('click', function (e) {
+                togglePasswordVisibility('forgot-new-password', this);
+            });
+
+            document.getElementById('toggleForgotConfirmPassword').addEventListener('click', function (e) {
+                togglePasswordVisibility('forgot-confirm-password', this);
+            });
+
+            document.getElementById('toggleLoginPassword').addEventListener('click', function (e) {
+                togglePasswordVisibility('loginPassword', this);
+            });
+        });
+    </script>
+</body>
+</html>

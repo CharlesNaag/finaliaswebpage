@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Mukta');
+
+body {
+    font-family: 'Mukta', sans-serif;
+    height: 100vh;
+    min-height: 550px;
+    background-image: url(../assets/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow-y: hidden;
+}
+
+.navbar {
+    display: flex;
+    background-color: rgb(224, 68, 68);
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: #444444;
+}
+
+.card {
+    display: inline-block;
+    width: 100%;
+}
+
+.custom-col {
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+
+@media (max-width: 1200px) {
+    .custom-col {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+}
+
+@media (max-width: 992px) {
+    .custom-col {
+        flex: 0 0 33.3333%;
+        max-width: 33.3333%;
+    }
+}
+
+@media (max-width: 768px) {
+    .custom-col {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .custom-col {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+.fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.fab i {
+    margin-left: 8px;
+}
+.modal-content{
+    margin-top: 25%;
+}
+.modal-header{
+    background-color: rgb(224, 68, 68);
+}
+.btn-primary {
+    background-color: rgb(224, 68, 68) !important;
+    border-color: rgb(224, 68, 68) !important;
+    color: white !important;
+}
+
+.btn-primary:hover {
+    background-color: rgb(224, 68, 68) !important;
+    border-color: rgb(224, 68, 68) !important;
+    color: black !important;
+}
+
+.btn-primary:focus, .btn-primary:active, .btn-primary:focus-visible {
+    background-color: rgb(224, 68, 68) !important;
+    border-color: rgb(224, 68, 68) !important;
+    color: white !important;
+    box-shadow: 0 0 0 0.2rem rgb(224, 68, 68) !important;
+}
+.card-body{
+    background-color: rgb(238, 238, 165);
+}
