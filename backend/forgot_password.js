@@ -60,7 +60,7 @@ router.post('/forgot_password', async (req, res) => {
       );
 
       // Send reset link to the user's email
-      const resetLink = `http://localhost:3001/reset_password.html?token=${resetToken}&id=${user.id}`;
+      const resetLink = `https://finaliaswebpage.onrender.com/reset_password.html?token=${resetToken}&id=${user.id}`;
 
       const mailOptions = {
         from: 'charlesrussellllovido.naag@bicol-u.edu.ph',
